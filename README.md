@@ -23,7 +23,7 @@ time do coração está performando!
 #### Tela inicial
 Tela para seleção de liga e ano para para a pesquisa.
 
-####Tabela de classificação
+#### Tabela de classificação
 Tabela com a classificação dos times de uma liga específica em
 um ano específico. Filtros e ordenação da tabela são um diferencial.
 
