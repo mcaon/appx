@@ -6,6 +6,7 @@ import {PageTitle, TopBar} from '../../styles';
 export default function Classification({}) {
     const screenWidth = Dimensions.get('window').width;
 
+
     return (
         <>
             <AppXScroll showsHorizontalScrollIndicator={false}>
