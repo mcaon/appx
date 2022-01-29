@@ -49,3 +49,7 @@ export const useTeamLeagues = () => {
 export const useTeamLeagueSelected = () => {
     return useSelector((state: any) => state.team.leagueSelected);
 };
+
+export const useTeamIsFetching = () => {
+    return useSelector((state: any) => state.team.fetching);
+};

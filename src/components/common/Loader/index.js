@@ -5,10 +5,12 @@ import {ActivityIndicatorStyled, LoaderStyled} from './styles';
 import Text from '../Text';
 import Whitespace from '../Whitespace';
 import {Metrics} from '../../../config';
+import {useTeamIsFetching} from '../../../store/hooks/team';
 
 const Loader = () => {
   const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
   const [loading, setLoading] = useState(false);
+  const teamLoading = useTeamIsFetching();
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -18,6 +20,13 @@ const Loader = () => {
     }).start();
   }, [loading, fadeAnim]);
 
+  useEffect(() => {
+    setLoading(
+      teamLoading,
+    );
+  }, [
+    teamLoading,
+  ]);
 
   return loading ? (
     <Animated.View
