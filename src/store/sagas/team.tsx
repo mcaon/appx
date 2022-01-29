@@ -1,7 +1,7 @@
 import {call, put, select, takeLatest} from 'redux-saga/effects';
 import {Creators, Types} from '../reducers/team';
 import {setSnackbarInfos} from '../../components/Snackbar/snackbarUtils';
-import {leaguesRequest, seasonsRequest} from '../../services/team';
+import {leaguesRequest, seasonsRequest, standingsRequest} from '../../services/team';
 
 export function* getSeasons() {
     try {
@@ -25,7 +25,22 @@ export function* getLeagues() {
     }
 }
 
+export function* getStandings() {
+    try {
+        // @ts-ignore
+        const seasonSelected = yield select(state => state.team.seasonSelected);
+        // @ts-ignore
+        const leagueSelected = yield select(state => state.team.leagueSelected);
+        // @ts-ignore
+        const response: any = yield call(standingsRequest, seasonSelected, leagueSelected);
+        yield put(Creators.listStandingsSuccess(response.data.response));
+    } catch (error) {
+        setSnackbarInfos('Erro ao atualizar listagem de Ligas', true);
+    }
+}
+
 export const teamSagas = [
     takeLatest(Types.LIST_SEASONS_REQUEST, getSeasons),
     takeLatest(Types.LIST_LEAGUES_REQUEST, getLeagues),
+    takeLatest(Types.LIST_STANDINGS_REQUEST, getLeagues),
 ];

@@ -7,8 +7,8 @@ import {
     useTeamLeagues,
     useTeamLeaguesRequest,
     useTeamSeasons,
-    useTeamSeasonsRequest,
-    useTeamSetSeasonSelected,
+    useTeamSeasonsRequest, useTeamSetLeagueSelected,
+    useTeamSetSeasonSelected, useTeamStandingsRequest,
 } from '../../store/hooks/team';
 import {Avatar, List} from 'react-native-paper';
 import {LeagueModel} from '../../shared/models/league.model';
@@ -16,7 +16,9 @@ import {LeagueModel} from '../../shared/models/league.model';
 export default function Home({}) {
     const getSeasons = useTeamSeasonsRequest();
     const getLeagues = useTeamLeaguesRequest();
+    const getStandings = useTeamStandingsRequest();
     const setSeasonSelected = useTeamSetSeasonSelected();
+    const setLeagueSelected = useTeamSetLeagueSelected();
     const seasons = useTeamSeasons();
     const leagues = useTeamLeagues();
     const screenWidth = Dimensions.get('window').width;
@@ -31,7 +33,8 @@ export default function Home({}) {
     };
 
     const selectLeague = (league: LeagueModel) => {
-        console.log(league);
+        setLeagueSelected(league);
+        getStandings();
     };
 
     useEffect(() => {
@@ -70,8 +73,8 @@ export default function Home({}) {
                                 onPress={() => {
                                     setExpandedLeagues(!expandedLeagues);
                                 }}>
-                                {leagues.map((l: LeagueModel, i: number) => (
-                                    <List.Item key={i} onPress={() => selectLeague(l)}
+                                {leagues.map((l: LeagueModel, index: number) => (
+                                    <List.Item key={index} onPress={() => selectLeague(l)}
                                                title={l.league?.name}
                                                left={() => <Avatar.Image size={40}
                                                                          source={{uri: l.league?.logo}}/>}/>

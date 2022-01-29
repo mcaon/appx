@@ -26,4 +26,20 @@ const leaguesRequest = (season: string) => {
         });
 };
 
-export {seasonsRequest, leaguesRequest};
+const standingsRequest = (season: string, league: string) => {
+    return api
+        .get('standings', {
+            params: {
+                season: season,
+                league: league,
+            },
+        })
+        .then((response) => {
+            return response;
+        })
+        .catch((err) => {
+            throw err;
+        });
+};
+
+export {seasonsRequest, leaguesRequest, standingsRequest};
