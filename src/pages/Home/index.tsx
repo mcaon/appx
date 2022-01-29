@@ -1,13 +1,24 @@
 import * as React from 'react';
+import {useEffect, useState} from 'react';
 import {AppXScroll, BottomBar, Footer, ScrollPage, TextContainer, TopInfo} from './styles';
-import {Dimensions} from 'react-native';
+import {Dimensions, ScrollView} from 'react-native';
 import {PageTitle, TopBar} from '../../styles';
-import {useEffect} from 'react';
-import {useTeamSeasonsRequest} from '../../store/hooks/team';
+import {useTeamSeasons, useTeamSeasonsRequest} from '../../store/hooks/team';
+import {List} from 'react-native-paper';
 
 export default function Home({}) {
     const getSeasons = useTeamSeasonsRequest();
+    const seasons = useTeamSeasons();
     const screenWidth = Dimensions.get('window').width;
+
+    const [expanded, setExpanded] = useState(false);
+    const [seasonSelected, setSeasonSelected] = useState('');
+
+    const selectSeason = (season: string) => {
+        setSeasonSelected(season);
+        setExpanded(false);
+        console.log('season selected', seasonSelected);
+    };
 
     useEffect(() => {
         getSeasons();
@@ -23,10 +34,23 @@ export default function Home({}) {
                                 <PageTitle>Home</PageTitle>
                             </TextContainer>
                         </TopInfo>
-                        {/*<Footer>*/}
-
-                        {/*</Footer>*/}
                     </TopBar>
+                    <ScrollView>
+                        <List.Section title="Filtros">
+                            <List.Accordion
+                                title="Seasons"
+                                left={props => <List.Icon {...props} icon="calendar"/>}
+                                expanded={expanded}
+                                onPress={() => {
+                                    setExpanded(!expanded);
+                                }}>
+                                {seasons.map((l: string, i: number) => (
+                                    <List.Item key={i} onPress={() => selectSeason(l)}
+                                               title={l}/>
+                                ))}
+                            </List.Accordion>
+                        </List.Section>
+                    </ScrollView>
                     <BottomBar>
                         <Footer/>
                     </BottomBar>

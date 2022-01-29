@@ -17,9 +17,6 @@ export default function Classification({}) {
                                 <PageTitle>Classification</PageTitle>
                             </TextContainer>
                         </TopInfo>
-                        {/*<Footer>*/}
-
-                        {/*</Footer>*/}
                     </TopBar>
                     <BottomBar>
                         <Footer/>

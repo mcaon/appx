@@ -1,5 +1,5 @@
 import {useCallback} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Creators} from '../reducers/team';
 
 export const useTeamSeasonsRequest = () => {
@@ -7,4 +7,8 @@ export const useTeamSeasonsRequest = () => {
     return useCallback(() => {
         dispatch(Creators.listSeasonsRequest());
     }, [dispatch]);
+};
+
+export const useTeamSeasons = () => {
+    return useSelector((state: any) => state.team.seasons);
 };
