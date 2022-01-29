@@ -4,26 +4,34 @@ import {AppXScroll, BottomBar, Footer, ScrollPage, TextContainer, TopInfo} from 
 import {Dimensions, ScrollView} from 'react-native';
 import {PageTitle, TopBar} from '../../styles';
 import {
+    useTeamLeagues,
     useTeamLeaguesRequest,
     useTeamSeasons,
     useTeamSeasonsRequest,
     useTeamSetSeasonSelected,
 } from '../../store/hooks/team';
 import {List} from 'react-native-paper';
+import {LeagueModel} from '../../shared/models/league.model';
 
 export default function Home({}) {
     const getSeasons = useTeamSeasonsRequest();
     const getLeagues = useTeamLeaguesRequest();
     const setSeasonSelected = useTeamSetSeasonSelected();
     const seasons = useTeamSeasons();
+    const leagues = useTeamLeagues();
     const screenWidth = Dimensions.get('window').width;
 
-    const [expanded, setExpanded] = useState(false);
+    const [expandedSeasons, setExpandedSeasons] = useState(false);
+    const [expandedLeagues, setExpandedLeagues] = useState(false);
 
     const selectSeason = (season: string) => {
         setSeasonSelected(season);
-        setExpanded(false);
+        setExpandedSeasons(false);
         getLeagues();
+    };
+
+    const selectLeague = (league: LeagueModel) => {
+        console.log(league);
     };
 
     useEffect(() => {
@@ -46,13 +54,25 @@ export default function Home({}) {
                             <List.Accordion
                                 title="Seasons"
                                 left={props => <List.Icon {...props} icon="calendar"/>}
-                                expanded={expanded}
+                                expanded={expandedSeasons}
                                 onPress={() => {
-                                    setExpanded(!expanded);
+                                    setExpandedSeasons(!expandedSeasons);
                                 }}>
                                 {seasons.map((l: string, i: number) => (
                                     <List.Item key={i} onPress={() => selectSeason(l)}
                                                title={l}/>
+                                ))}
+                            </List.Accordion>
+                            <List.Accordion
+                                title="Leagues"
+                                left={props => <List.Icon {...props} icon="soccer"/>}
+                                expanded={expandedLeagues}
+                                onPress={() => {
+                                    setExpandedLeagues(!expandedLeagues);
+                                }}>
+                                {leagues.map((l: LeagueModel, i: number) => (
+                                    <List.Item key={i} onPress={() => selectLeague(l)}
+                                               title={l.league?.name}/>
                                 ))}
                             </List.Accordion>
                         </List.Section>

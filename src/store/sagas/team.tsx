@@ -19,7 +19,6 @@ export function* getLeagues() {
         const seasonSelected = yield select(state => state.team.seasonSelected);
         // @ts-ignore
         const response: any = yield call(leaguesRequest, seasonSelected);
-        console.log('params', response.data.parameters);
         yield put(Creators.listLeaguesSuccess(response.data.response));
     } catch (error) {
         setSnackbarInfos('Erro ao atualizar listagem de Ligas', true);
