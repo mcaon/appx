@@ -10,7 +10,7 @@ import {
     useTeamSeasonsRequest,
     useTeamSetSeasonSelected,
 } from '../../store/hooks/team';
-import {List} from 'react-native-paper';
+import {Avatar, List} from 'react-native-paper';
 import {LeagueModel} from '../../shared/models/league.model';
 
 export default function Home({}) {
@@ -72,7 +72,10 @@ export default function Home({}) {
                                 }}>
                                 {leagues.map((l: LeagueModel, i: number) => (
                                     <List.Item key={i} onPress={() => selectLeague(l)}
-                                               title={l.league?.name}/>
+                                               title={l.league?.name}
+                                               left={() => <Avatar.Image size={40}
+                                                                         source={{uri: l.league?.logo}}/>}/>
+
                                 ))}
                             </List.Accordion>
                         </List.Section>
