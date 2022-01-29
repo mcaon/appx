@@ -3,26 +3,32 @@ import {useEffect, useState} from 'react';
 import {AppXScroll, BottomBar, Footer, ScrollPage, TextContainer, TopInfo} from './styles';
 import {Dimensions, ScrollView} from 'react-native';
 import {PageTitle, TopBar} from '../../styles';
-import {useTeamSeasons, useTeamSeasonsRequest} from '../../store/hooks/team';
+import {
+    useTeamLeaguesRequest,
+    useTeamSeasons,
+    useTeamSeasonsRequest,
+    useTeamSetSeasonSelected,
+} from '../../store/hooks/team';
 import {List} from 'react-native-paper';
 
 export default function Home({}) {
     const getSeasons = useTeamSeasonsRequest();
+    const getLeagues = useTeamLeaguesRequest();
+    const setSeasonSelected = useTeamSetSeasonSelected();
     const seasons = useTeamSeasons();
     const screenWidth = Dimensions.get('window').width;
 
     const [expanded, setExpanded] = useState(false);
-    const [seasonSelected, setSeasonSelected] = useState('');
 
     const selectSeason = (season: string) => {
         setSeasonSelected(season);
         setExpanded(false);
-        console.log('season selected', seasonSelected);
+        getLeagues();
     };
 
     useEffect(() => {
         getSeasons();
-    }, [getSeasons]);
+    }, [getSeasons, getLeagues]);
 
     return (
         <>
