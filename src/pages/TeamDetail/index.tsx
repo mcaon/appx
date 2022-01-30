@@ -1,13 +1,24 @@
 import * as React from 'react';
 import {useContext} from 'react';
-import {AppXInnerScrollView, AppXScroll, BottomBar, Footer, PageTitle, ScrollPage, TopBar} from '../../styles';
-import {Dimensions, Image, StyleSheet} from 'react-native';
 import {
+    AppXInnerScrollView,
+    AppXScroll,
+    BottomBar,
     ButtonTextView,
     ButtonTouchable,
-    ButtonView, EventDescriptionView, EventTitleLabel,
+    ButtonView,
+    EventDescriptionView,
+    EventTitleLabel,
+    Footer,
+    PageTitle,
+    ScrollPage,
+    TeamButtonsScroll,
+    TopBar
+} from '../../styles';
+import {Dimensions, Image, StyleSheet} from 'react-native';
+import {
     IconContainer,
-    LogoView, TeamButtonsScroll,
+    LogoView,
     TeamDetailsView,
     TeamInfoText,
     TeamInfoView,
@@ -41,10 +52,6 @@ export default function TeamDetail({navigation}: any) {
 
     const goTeamSquad = () => {
         navigation.navigate('TeamPlayersSquadComponent');
-    };
-
-    const goTrophies = () => {
-        navigation.navigate('TeamTrophies');
     };
 
     return (
@@ -96,22 +103,7 @@ export default function TeamDetail({navigation}: any) {
                             />
 
                             <TeamButtonsScroll>
-                                <ButtonView key={1}>
-                                    <ButtonTouchable onPress={() => {
-                                        goTrophies();
-                                    }}>
-                                        <EventDescriptionView>
-                                            <Icon type={'material'} name={'emoji-events'}
-                                                  underlayColor={themeContext.palette.backgroundTransparent} size={35}
-                                                  color={themeContext.palette.backGroundGrey}
-                                                  tvParallaxProperties={undefined}/>
-                                            <ButtonTextView >
-                                                <EventTitleLabel>{'Troféus'}</EventTitleLabel>
-                                            </ButtonTextView>
-                                        </EventDescriptionView>
-                                    </ButtonTouchable>
-                                </ButtonView>
-                                <ButtonView key={2}>
+                                <ButtonView key={245435}>
                                     <ButtonTouchable onPress={() => {
                                         goTeamSquad();
                                     }}>
@@ -128,8 +120,6 @@ export default function TeamDetail({navigation}: any) {
                                     </ButtonTouchable>
                                 </ButtonView>
                             </TeamButtonsScroll>
-
-
                         </AppXInnerScrollView>
                         : <></>
                     }

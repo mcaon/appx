@@ -57,9 +57,9 @@ const listTeamPlayersSquadRequest = (state = INITIAL_STATE) => ({
   fetching: true,
 });
 
-const listTeamPlayersSquadSuccess = (state = INITIAL_STATE, {playersSquad}: any) => ({
+const listTeamPlayersSquadSuccess = (state = INITIAL_STATE, {squad}: any) => ({
   ...state,
-  playersSquad,
+  playersSquad: squad,
   fetching: false,
 });
 

@@ -57,4 +57,5 @@ const teamDetailsRequest = (teamId: number) => {
         });
 };
 
+
 export {seasonsRequest, leaguesRequest, standingsRequest, teamDetailsRequest};

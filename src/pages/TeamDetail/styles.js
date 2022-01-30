@@ -53,49 +53,4 @@ export const VenueLabel = styled.Text`
     font-weight: bold;
 `;
 
-export const TeamButtonsScroll = styled.View`
-    flex: 9;
-    flex-direction: row;
-    padding: 10px;
-    background: ${({theme}) => theme.palette.backGround};
-    justify-content: center;
-`;
 
-export const ButtonView = styled.View`
-    flex-direction: row;
-    justify-content: space-between;
-    elevation: 4;
-    background: ${({theme}) => theme.palette.textGrey};
-    margin-bottom: 10px;
-    margin-right: 10px;
-    margin-left: 2px;
-    height: 70px;
-    border-radius: 20px;
-`;
-
-export const ButtonTouchable = styled.TouchableOpacity`
-    flex-direction: row;
-    justify-content: center;
-    padding: 5px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    margin-left: 2px;
-    height: 70px;
-    width: 100px;
-    border-radius: 20px;
-`;
-
-export const EventDescriptionView = styled.View`
-    flex: 4;
-`;
-
-export const EventTitleLabel = styled.Text`
-    color: ${({theme}) => theme.palette.textSecondary};
-    font-weight: bold;
-    font-size: 17px;
-`;
-
-export const ButtonTextView = styled.View`
-    flex-direction: row;
-    justify-content: center;
-`;

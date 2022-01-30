@@ -1,7 +1,11 @@
 import {call, put, select, takeLatest} from 'redux-saga/effects';
 import {Creators, Types} from '../reducers/team';
 import {setSnackbarInfos} from '../../components/Snackbar/snackbarUtils';
-import {leaguesRequest, seasonsRequest, standingsRequest, teamDetailsRequest} from '../../services/team';
+import {
+    leaguesRequest,
+    seasonsRequest,
+    standingsRequest,
+} from '../../services/team';
 import {TeamModel} from '../../shared/models/team.model';
 import {TeamDetailModel, VenueModel} from '../../shared/models/team-detail.model';
 
@@ -73,6 +77,11 @@ export function* getTeamDetails({teamId}: any) {
 export function* getTeamPlayersSquad() {
     try {
         console.log('players');
+        // //@ts-ignore
+        // const teamSelected = yield select(state => state.team.teamSelected);
+        // //@ts-ignore
+        // const response: any = yield call(teamPlayersSquadRequest, teamSelected.id);
+        // yield put(Creators.getTeamDetailsSuccess(response.data.response[0].players));
     } catch (error) {
         setSnackbarInfos('Erro ao pesquisar Jogadores do Time', true);
         yield put(Creators.loadingFailed());
