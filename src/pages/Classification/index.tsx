@@ -2,19 +2,21 @@ import * as React from 'react';
 import {Dimensions, ScrollView} from 'react-native';
 import {PageTitle, TopBar} from '../../styles';
 import {DataTable} from 'react-native-paper';
-import {useTeamStandings} from '../../store/hooks/team';
+import {useTeamStandings, useTeamTeamDetailsRequest} from '../../store/hooks/team';
 import {AppXScroll, BottomBar, Footer, InfoText, LeagueInfo, ScrollPage, TextContainer, TopInfo} from './styles';
 import {LeagueStandingsModel} from '../../shared/models/league-standings.model';
 import {TeamStandingsModel} from '../../shared/models/team-standings.model';
 
-export default function Classification({}) {
+export default function Classification({navigation}: any) {
     const screenWidth = Dimensions.get('window').width;
     const leagueStandings: LeagueStandingsModel = useTeamStandings();
+    const getTeamDetails = useTeamTeamDetailsRequest();
 
-    const selectTeam = (team: any) => {
-        console.log('select team');
-        console.log(team);
+    const selectTeam = async (team: any) => {
+        await getTeamDetails(team.team.id);
+        navigation.navigate('TeamDetailComponent');
     };
+
     return (
         <>
             <AppXScroll showsHorizontalScrollIndicator={false}>

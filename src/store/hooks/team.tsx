@@ -24,6 +24,13 @@ export const useTeamLeaguesRequest = () => {
     }, [dispatch]);
 };
 
+export const useTeamTeamDetailsRequest = () => {
+    const dispatch = useDispatch();
+    return useCallback((teamId: number) => {
+        dispatch(Creators.getTeamDetailsRequest(teamId));
+    }, [dispatch]);
+};
+
 export const useTeamSetSeasonSelected = () => {
     const dispatch = useDispatch();
     return useCallback((season: string) => {
@@ -52,6 +59,10 @@ export const useTeamLeagueSelected = () => {
 
 export const useTeamStandings = () => {
     return useSelector((state: any) => state.team.standings);
+};
+
+export const useTeamTeamDetails = () => {
+    return useSelector((state: any) => state.team.teamSelected);
 };
 
 export const useTeamIsFetching = () => {

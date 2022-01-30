@@ -7,6 +7,8 @@ export const {Types, Creators} = createActions({
   listLeaguesSuccess: ['leagues'],
   listStandingsRequest: null,
   listStandingsSuccess: ['standings'],
+  getTeamDetailsRequest: ['teamId'],
+  getTeamDetailsSuccess: ['team'],
   setSeasonSelected: ['season'],
   setLeagueSelected: ['league'],
 });
@@ -15,6 +17,7 @@ const INITIAL_STATE = {
   seasons: [],
   seasonSelected: null,
   leagueSelected: null,
+  teamSelected: null,
   leagues: [],
   standings: [],
   fetching: false,
@@ -53,6 +56,17 @@ const listStandingsSuccess = (state = INITIAL_STATE, {standings}) => ({
   fetching: false,
 });
 
+const getTeamDetailsRequest = (state = INITIAL_STATE) => ({
+  ...state,
+  fetching: true,
+});
+
+const getTeamDetailsSuccess = (state = INITIAL_STATE, {team}) => ({
+  ...state,
+  teamSelected: team,
+  fetching: false,
+});
+
 const setSeasonSelected = (state = INITIAL_STATE, {season}) => ({
   ...state,
   seasonSelected: season,
@@ -71,6 +85,8 @@ export default createReducer(INITIAL_STATE, {
   [Types.LIST_LEAGUES_SUCCESS]: listLeaguesSuccess,
   [Types.LIST_STANDINGS_REQUEST]: listStandingsRequest,
   [Types.LIST_STANDINGS_SUCCESS]: listStandingsSuccess,
+  [Types.GET_TEAM_DETAILS_REQUEST]: getTeamDetailsRequest,
+  [Types.GET_TEAM_DETAILS_SUCCESS]: getTeamDetailsSuccess,
   [Types.SET_SEASON_SELECTED]: setSeasonSelected,
   [Types.SET_LEAGUE_SELECTED]: setLeagueSelected,
 });

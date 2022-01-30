@@ -1,7 +1,7 @@
 import {call, put, select, takeLatest} from 'redux-saga/effects';
 import {Creators, Types} from '../reducers/team';
 import {setSnackbarInfos} from '../../components/Snackbar/snackbarUtils';
-import {leaguesRequest, seasonsRequest, standingsRequest} from '../../services/team';
+import {leaguesRequest, seasonsRequest, standingsRequest, teamDetailsRequest} from '../../services/team';
 
 export function* getSeasons() {
     try {
@@ -39,7 +39,17 @@ export function* getStandings() {
             setSnackbarInfos('Não foi possível retornar a classificação solicitada', true);
         }
     } catch (error) {
-        setSnackbarInfos('Erro ao atualizar listagem de Ligas', true);
+        setSnackbarInfos('Erro ao atualizar Classificação', true);
+    }
+}
+
+export function* getTeamDetails({teamId}: any) {
+    try {
+        // @ts-ignore
+        const response: any = yield call(teamDetailsRequest, teamId);
+        yield put(Creators.getTeamDetailsSuccess(response.data.response[0].team));
+    } catch (error) {
+        setSnackbarInfos('Erro ao pesquisar Time', true);
     }
 }
 
@@ -47,4 +57,5 @@ export const teamSagas = [
     takeLatest(Types.LIST_SEASONS_REQUEST, getSeasons),
     takeLatest(Types.LIST_LEAGUES_REQUEST, getLeagues),
     takeLatest(Types.LIST_STANDINGS_REQUEST, getStandings),
+    takeLatest(Types.GET_TEAM_DETAILS_REQUEST, getTeamDetails),
 ];
