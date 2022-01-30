@@ -36,7 +36,7 @@ const HomeTabs = () => {
                         case 'HomeComponent':
                             iconName = 'home';
                             break;
-                        case 'ClassificationComponent':
+                        case 'StandingsComponent':
                             iconName = 'emoji-events';
                             break;
                         case 'TeamDetailComponent':
@@ -53,8 +53,8 @@ const HomeTabs = () => {
                 },
             })}>
             <Tab.Screen name="HomeComponent" component={Home} options={{title: 'Home'}}/>
-            <Tab.Screen name="ClassificationComponent" component={Classification} options={{title: 'Classificação'}}/>
-            <Tab.Screen name="TeamDetailComponent" component={TeamDetail} options={{title: 'Time'}}/>
+            <Tab.Screen name="StandingsComponent" component={Classification} options={{title: 'Standings'}}/>
+            <Tab.Screen name="TeamDetailComponent" component={TeamDetail} options={{title: 'Team'}}/>
         </Tab.Navigator>
     );
 };

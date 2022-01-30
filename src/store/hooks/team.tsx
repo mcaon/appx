@@ -50,6 +50,10 @@ export const useTeamLeagueSelected = () => {
     return useSelector((state: any) => state.team.leagueSelected);
 };
 
+export const useTeamStandings = () => {
+    return useSelector((state: any) => state.team.standings);
+};
+
 export const useTeamIsFetching = () => {
     return useSelector((state: any) => state.team.fetching);
 };

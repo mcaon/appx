@@ -7,13 +7,16 @@ import {
     useTeamLeagues,
     useTeamLeaguesRequest,
     useTeamSeasons,
-    useTeamSeasonsRequest, useTeamSetLeagueSelected,
-    useTeamSetSeasonSelected, useTeamStandingsRequest,
+    useTeamSeasonsRequest,
+    useTeamSetLeagueSelected,
+    useTeamSetSeasonSelected,
+    useTeamStandings,
+    useTeamStandingsRequest,
 } from '../../store/hooks/team';
 import {Avatar, List} from 'react-native-paper';
 import {LeagueModel} from '../../shared/models/league.model';
 
-export default function Home({}) {
+export default function Home({navigation}: any) {
     const getSeasons = useTeamSeasonsRequest();
     const getLeagues = useTeamLeaguesRequest();
     const getStandings = useTeamStandingsRequest();
@@ -21,8 +24,8 @@ export default function Home({}) {
     const setLeagueSelected = useTeamSetLeagueSelected();
     const seasons = useTeamSeasons();
     const leagues = useTeamLeagues();
+    const standings = useTeamStandings();
     const screenWidth = Dimensions.get('window').width;
-
     const [expandedSeasons, setExpandedSeasons] = useState(false);
     const [expandedLeagues, setExpandedLeagues] = useState(false);
 
@@ -32,9 +35,12 @@ export default function Home({}) {
         getLeagues();
     };
 
-    const selectLeague = (league: LeagueModel) => {
+    const selectLeague = async (league: LeagueModel) => {
         setLeagueSelected(league);
-        getStandings();
+        await getStandings();
+        if (standings) {
+            navigation.navigate('StandingsComponent');
+        }
     };
 
     useEffect(() => {

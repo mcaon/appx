@@ -32,8 +32,12 @@ export function* getStandings() {
         // @ts-ignore
         const leagueSelected = yield select(state => state.team.leagueSelected);
         // @ts-ignore
-        const response: any = yield call(standingsRequest, seasonSelected, leagueSelected);
-        yield put(Creators.listStandingsSuccess(response.data.response));
+        const response: any = yield call(standingsRequest, seasonSelected, leagueSelected.league.id);
+        if (response.data.response && response.data.response.length > 0) {
+            yield put(Creators.listStandingsSuccess(response.data.response[0].league));
+        } else {
+            setSnackbarInfos('Não foi possível retornar a classificação solicitada', true);
+        }
     } catch (error) {
         setSnackbarInfos('Erro ao atualizar listagem de Ligas', true);
     }
@@ -42,5 +46,5 @@ export function* getStandings() {
 export const teamSagas = [
     takeLatest(Types.LIST_SEASONS_REQUEST, getSeasons),
     takeLatest(Types.LIST_LEAGUES_REQUEST, getLeagues),
-    takeLatest(Types.LIST_STANDINGS_REQUEST, getLeagues),
+    takeLatest(Types.LIST_STANDINGS_REQUEST, getStandings),
 ];
