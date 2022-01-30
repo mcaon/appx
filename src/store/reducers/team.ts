@@ -28,7 +28,7 @@ const listSeasonsRequest = (state = INITIAL_STATE) => ({
   fetching: true,
 });
 
-const listSeasonsSuccess = (state = INITIAL_STATE, {seasons}) => ({
+const listSeasonsSuccess = (state = INITIAL_STATE, {seasons}: any) => ({
   ...state,
   seasons,
   fetching: false,
@@ -39,7 +39,7 @@ const listLeaguesRequest = (state = INITIAL_STATE) => ({
   fetching: true,
 });
 
-const listLeaguesSuccess = (state = INITIAL_STATE, {leagues}) => ({
+const listLeaguesSuccess = (state = INITIAL_STATE, {leagues}: any) => ({
   ...state,
   leagues,
   fetching: false,
@@ -50,7 +50,7 @@ const listStandingsRequest = (state = INITIAL_STATE) => ({
   fetching: true,
 });
 
-const listStandingsSuccess = (state = INITIAL_STATE, {standings}) => ({
+const listStandingsSuccess = (state = INITIAL_STATE, {standings}: any) => ({
   ...state,
   standings,
   fetching: false,
@@ -61,18 +61,18 @@ const getTeamDetailsRequest = (state = INITIAL_STATE) => ({
   fetching: true,
 });
 
-const getTeamDetailsSuccess = (state = INITIAL_STATE, {team}) => ({
+const getTeamDetailsSuccess = (state = INITIAL_STATE, {team}: any) => ({
   ...state,
   teamSelected: team,
   fetching: false,
 });
 
-const setSeasonSelected = (state = INITIAL_STATE, {season}) => ({
+const setSeasonSelected = (state = INITIAL_STATE, {season}: any) => ({
   ...state,
   seasonSelected: season,
 });
 
-const setLeagueSelected = (state = INITIAL_STATE, {league}) => ({
+const setLeagueSelected = (state = INITIAL_STATE, {league}: any) => ({
   ...state,
   leagueSelected: league,
 });
