@@ -34,14 +34,7 @@ export const useTeamTeamDetailsRequest = () => {
 export const useTeamPlayersSquadRequest = () => {
     const dispatch = useDispatch();
     return useCallback(() => {
-        dispatch(Creators.listTeamPlayersRequest());
-    }, [dispatch]);
-};
-
-export const useTeamTrophiesRequest = () => {
-    const dispatch = useDispatch();
-    return useCallback(() => {
-        dispatch(Creators.listTeamTrophiesRequest());
+        dispatch(Creators.listTeamPlayersSquadRequest());
     }, [dispatch]);
 };
 
@@ -81,10 +74,6 @@ export const useTeamTeamDetails = () => {
 
 export const useTeamTeamPlayersSquad = () => {
     return useSelector((state: any) => state.team.teamPlayersSquad);
-};
-
-export const useTeamTeamTrophies = () => {
-    return useSelector((state: any) => state.team.trophies);
 };
 
 export const useTeamIsFetching = () => {

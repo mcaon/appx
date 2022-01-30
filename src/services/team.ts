@@ -57,5 +57,20 @@ const teamDetailsRequest = (teamId: number) => {
         });
 };
 
+const teamPlayersSquadRequest = (teamId: number) => {
+    return api
+        .get('players/squads', {
+            params: {
+                team: teamId,
+            },
+        })
+        .then((response) => {
+            return response;
+        })
+        .catch((err) => {
+            throw err;
+        });
+};
 
-export {seasonsRequest, leaguesRequest, standingsRequest, teamDetailsRequest};
+
+export {seasonsRequest, leaguesRequest, standingsRequest, teamDetailsRequest, teamPlayersSquadRequest};

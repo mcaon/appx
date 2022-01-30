@@ -20,7 +20,6 @@ import Home from './pages/Home';
 import Classification from './pages/Classification';
 import TeamDetail from './pages/TeamDetail';
 import TeamPlayersSquad from './pages/TeamPlayersSquad';
-import TeamTrophies from './pages/TeamTrophies';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -76,7 +75,6 @@ const App = () => {
                                 <Stack.Navigator initialRouteName="Home">
                                     <Stack.Screen name="Home" component={HomeTabs} options={{headerShown: false}}/>
                                     <Stack.Screen name="TeamPlayersSquadComponent" component={TeamPlayersSquad} options={{headerShown: false}}/>
-                                    <Stack.Screen name="TeamTrophies" component={TeamTrophies} options={{headerShown: false}}/>
                                 </Stack.Navigator>
                             </ThemeProvider>
                         </NavigationContainer>
