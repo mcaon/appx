@@ -1,9 +1,19 @@
 import * as React from 'react';
-import {Dimensions, ScrollView} from 'react-native';
-import {PageTitle, TopBar} from '../../styles';
+import {Dimensions} from 'react-native';
+import {
+    AppXInnerScrollView,
+    AppXScroll,
+    BottomBar,
+    Footer,
+    PageTitle,
+    ScrollPage,
+    TextContainer,
+    TopBar,
+    TopInfo,
+} from '../../styles';
 import {DataTable} from 'react-native-paper';
 import {useTeamStandings, useTeamTeamDetailsRequest} from '../../store/hooks/team';
-import {AppXScroll, BottomBar, Footer, InfoText, LeagueInfo, ScrollPage, TextContainer, TopInfo} from './styles';
+import {InfoText, LeagueInfo} from './styles';
 import {LeagueStandingsModel} from '../../shared/models/league-standings.model';
 import {TeamStandingsModel} from '../../shared/models/team-standings.model';
 
@@ -28,7 +38,7 @@ export default function Classification({navigation}: any) {
                             </TextContainer>
                         </TopInfo>
                     </TopBar>
-                    <ScrollView>
+                    <AppXInnerScrollView>
                         <LeagueInfo>
                             <InfoText>Name: {leagueStandings?.name}</InfoText>
                             <InfoText>Country: {leagueStandings?.country}</InfoText>
@@ -58,7 +68,7 @@ export default function Classification({navigation}: any) {
                                 )) : <></>}
                             </DataTable>
                         )) : <></>}
-                    </ScrollView>
+                    </AppXInnerScrollView>
                     <BottomBar>
                         <Footer/>
                     </BottomBar>

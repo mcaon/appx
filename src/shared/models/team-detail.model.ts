@@ -1,4 +1,6 @@
-class VenueModel {
+import {TeamModel} from './team.model';
+
+export class VenueModel {
     constructor(
         public id?: number,
         public name?: string,
@@ -13,12 +15,7 @@ class VenueModel {
 
 export class TeamDetailModel {
     constructor(
-        public id?: number,
-        public name?: string,
-        public country?: string,
-        public founded?: number,
-        public national?: boolean,
-        public logo?: string,
+        public team?: TeamModel,
         public venue?: VenueModel,
     ) {
         this.venue = new VenueModel();

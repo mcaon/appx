@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import {AppXScroll, BottomBar, Footer, ScrollPage, TextContainer, TopInfo} from './styles';
+import {AppXScroll, BottomBar, Footer, PageTitle, ScrollPage, TextContainer, TopBar, TopInfo} from '../../styles';
 import {Dimensions, ScrollView} from 'react-native';
-import {PageTitle, TopBar} from '../../styles';
 import {
     useTeamLeagues,
     useTeamLeaguesRequest,

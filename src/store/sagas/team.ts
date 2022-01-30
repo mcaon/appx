@@ -10,6 +10,7 @@ export function* getSeasons() {
         yield put(Creators.listSeasonsSuccess(response.data.response));
     } catch (error) {
         setSnackbarInfos('Erro ao atualizar listagem de Temporadas', true);
+        yield put(Creators.loadingFailed());
     }
 }
 
@@ -22,6 +23,7 @@ export function* getLeagues() {
         yield put(Creators.listLeaguesSuccess(response.data.response));
     } catch (error) {
         setSnackbarInfos('Erro ao atualizar listagem de Ligas', true);
+        yield put(Creators.loadingFailed());
     }
 }
 
@@ -37,9 +39,11 @@ export function* getStandings() {
             yield put(Creators.listStandingsSuccess(response.data.response[0].league));
         } else {
             setSnackbarInfos('Não foi possível retornar a classificação solicitada', true);
+            yield put(Creators.loadingFailed());
         }
     } catch (error) {
         setSnackbarInfos('Erro ao atualizar Classificação', true);
+        yield put(Creators.loadingFailed());
     }
 }
 
@@ -47,9 +51,10 @@ export function* getTeamDetails({teamId}: any) {
     try {
         // @ts-ignore
         const response: any = yield call(teamDetailsRequest, teamId);
-        yield put(Creators.getTeamDetailsSuccess(response.data.response[0].team));
+        yield put(Creators.getTeamDetailsSuccess(response.data.response[0]));
     } catch (error) {
         setSnackbarInfos('Erro ao pesquisar Time', true);
+        yield put(Creators.loadingFailed());
     }
 }
 

@@ -11,6 +11,7 @@ export const {Types, Creators} = createActions({
   getTeamDetailsSuccess: ['team'],
   setSeasonSelected: ['season'],
   setLeagueSelected: ['league'],
+  loadingFailed: null,
 });
 
 const INITIAL_STATE = {
@@ -77,6 +78,12 @@ const setLeagueSelected = (state = INITIAL_STATE, {league}: any) => ({
   leagueSelected: league,
 });
 
+const loadingFailed = (state = INITIAL_STATE) => ({
+  ...state,
+  fetching: false,
+});
+
+
 
 export default createReducer(INITIAL_STATE, {
   [Types.LIST_SEASONS_REQUEST]: listSeasonsRequest,
@@ -89,4 +96,5 @@ export default createReducer(INITIAL_STATE, {
   [Types.GET_TEAM_DETAILS_SUCCESS]: getTeamDetailsSuccess,
   [Types.SET_SEASON_SELECTED]: setSeasonSelected,
   [Types.SET_LEAGUE_SELECTED]: setLeagueSelected,
+  [Types.LOADING_FAILED]: loadingFailed,
 });
