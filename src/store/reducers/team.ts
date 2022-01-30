@@ -7,6 +7,10 @@ export const {Types, Creators} = createActions({
   listLeaguesSuccess: ['leagues'],
   listStandingsRequest: null,
   listStandingsSuccess: ['standings'],
+  listTeamPlayersSquadRequest: null,
+  listTeamPlayersSquadSuccess: ['squad'],
+  listTeamTrophiesRequest: null,
+  listTeamTrophiesSuccess: ['trophies'],
   getTeamDetailsRequest: ['teamId'],
   getTeamDetailsSuccess: ['team'],
   setSeasonSelected: ['season'],
@@ -21,6 +25,8 @@ const INITIAL_STATE = {
   teamSelected: null,
   leagues: [],
   standings: [],
+  teamPlayersSquad: [],
+  teamTrophies: [],
   fetching: false,
 };
 
@@ -43,6 +49,28 @@ const listLeaguesRequest = (state = INITIAL_STATE) => ({
 const listLeaguesSuccess = (state = INITIAL_STATE, {leagues}: any) => ({
   ...state,
   leagues,
+  fetching: false,
+});
+
+const listTeamPlayersSquadRequest = (state = INITIAL_STATE) => ({
+  ...state,
+  fetching: true,
+});
+
+const listTeamPlayersSquadSuccess = (state = INITIAL_STATE, {playersSquad}: any) => ({
+  ...state,
+  playersSquad,
+  fetching: false,
+});
+
+const listTeamTrophiesRequest = (state = INITIAL_STATE) => ({
+  ...state,
+  fetching: true,
+});
+
+const listTeamTrophiesSuccess = (state = INITIAL_STATE, {trophies}: any) => ({
+  ...state,
+  trophies,
   fetching: false,
 });
 
@@ -83,8 +111,6 @@ const loadingFailed = (state = INITIAL_STATE) => ({
   fetching: false,
 });
 
-
-
 export default createReducer(INITIAL_STATE, {
   [Types.LIST_SEASONS_REQUEST]: listSeasonsRequest,
   [Types.LIST_SEASONS_SUCCESS]: listSeasonsSuccess,
@@ -92,6 +118,10 @@ export default createReducer(INITIAL_STATE, {
   [Types.LIST_LEAGUES_SUCCESS]: listLeaguesSuccess,
   [Types.LIST_STANDINGS_REQUEST]: listStandingsRequest,
   [Types.LIST_STANDINGS_SUCCESS]: listStandingsSuccess,
+  [Types.LIST_TEAM_PLAYERS_SQUAD_REQUEST]: listTeamPlayersSquadRequest,
+  [Types.LIST_TEAM_PLAYERS_SQUAD_SUCCESS]: listTeamPlayersSquadSuccess,
+  [Types.LIST_TROPHIES_REQUEST]: listTeamTrophiesRequest,
+  [Types.LIST_TROPHIES_SUCCESS]: listTeamTrophiesSuccess,
   [Types.GET_TEAM_DETAILS_REQUEST]: getTeamDetailsRequest,
   [Types.GET_TEAM_DETAILS_SUCCESS]: getTeamDetailsSuccess,
   [Types.SET_SEASON_SELECTED]: setSeasonSelected,

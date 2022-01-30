@@ -11,6 +11,7 @@ import {
     useTeamSetSeasonSelected,
     useTeamStandings,
     useTeamStandingsRequest,
+    useTeamTeamDetailsRequest,
 } from '../../store/hooks/team';
 import {Avatar, List} from 'react-native-paper';
 import {LeagueModel} from '../../shared/models/league.model';
@@ -27,7 +28,7 @@ export default function Home({navigation}: any) {
     const screenWidth = Dimensions.get('window').width;
     const [expandedSeasons, setExpandedSeasons] = useState(false);
     const [expandedLeagues, setExpandedLeagues] = useState(false);
-
+    const getTeamDetails = useTeamTeamDetailsRequest();
     const selectSeason = (season: string) => {
         setSeasonSelected(season);
         setExpandedSeasons(false);
@@ -43,8 +44,9 @@ export default function Home({navigation}: any) {
     };
 
     useEffect(() => {
-        getSeasons();
-    }, [getSeasons, getLeagues]);
+        // getSeasons();
+        getTeamDetails(3);
+    }, [getSeasons, getLeagues, getTeamDetails]);
 
     return (
         <>

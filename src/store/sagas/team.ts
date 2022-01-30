@@ -2,6 +2,8 @@ import {call, put, select, takeLatest} from 'redux-saga/effects';
 import {Creators, Types} from '../reducers/team';
 import {setSnackbarInfos} from '../../components/Snackbar/snackbarUtils';
 import {leaguesRequest, seasonsRequest, standingsRequest, teamDetailsRequest} from '../../services/team';
+import {TeamModel} from '../../shared/models/team.model';
+import {TeamDetailModel, VenueModel} from '../../shared/models/team-detail.model';
 
 export function* getSeasons() {
     try {
@@ -50,10 +52,38 @@ export function* getStandings() {
 export function* getTeamDetails({teamId}: any) {
     try {
         // @ts-ignore
-        const response: any = yield call(teamDetailsRequest, teamId);
-        yield put(Creators.getTeamDetailsSuccess(response.data.response[0]));
+        // const response: any = yield call(teamDetailsRequest, teamId);
+        // yield put(Creators.getTeamDetailsSuccess(response.data.response[0]));
+
+
+        // MOCK
+        console.log('mock', teamId);
+        let tempTeam = new TeamDetailModel();
+        const team = new TeamModel(33, 'Manchester United', 'England', 1878, false, 'https://media.api-sports.io/football/teams/33.png');
+        const venue = new VenueModel(556, 'Old Trafford', 'Sir Matt Busby Way', 'Manchester', 76212, 'grass', 'https://media.api-sports.io/football/venues/556.png');
+        tempTeam.team = team;
+        tempTeam.venue = venue;
+        yield put(Creators.getTeamDetailsSuccess(tempTeam));
     } catch (error) {
         setSnackbarInfos('Erro ao pesquisar Time', true);
+        yield put(Creators.loadingFailed());
+    }
+}
+
+export function* getTeamPlayersSquad() {
+    try {
+        console.log('players');
+    } catch (error) {
+        setSnackbarInfos('Erro ao pesquisar Jogadores do Time', true);
+        yield put(Creators.loadingFailed());
+    }
+}
+
+export function* getTeamTrophies() {
+    try {
+        console.log('players');
+    } catch (error) {
+        setSnackbarInfos('Erro ao pesquisar Troféis', true);
         yield put(Creators.loadingFailed());
     }
 }
@@ -62,5 +92,7 @@ export const teamSagas = [
     takeLatest(Types.LIST_SEASONS_REQUEST, getSeasons),
     takeLatest(Types.LIST_LEAGUES_REQUEST, getLeagues),
     takeLatest(Types.LIST_STANDINGS_REQUEST, getStandings),
+    takeLatest(Types.LIST_TEAM_PLAYERS_REQUEST, getTeamPlayersSquad),
+    takeLatest(Types.LIST_TROPHIES_REQUEST, getTeamTrophies),
     takeLatest(Types.GET_TEAM_DETAILS_REQUEST, getTeamDetails),
 ];

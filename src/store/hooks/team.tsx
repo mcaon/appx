@@ -31,6 +31,20 @@ export const useTeamTeamDetailsRequest = () => {
     }, [dispatch]);
 };
 
+export const useTeamPlayersSquadRequest = () => {
+    const dispatch = useDispatch();
+    return useCallback(() => {
+        dispatch(Creators.listTeamPlayersRequest());
+    }, [dispatch]);
+};
+
+export const useTeamTrophiesRequest = () => {
+    const dispatch = useDispatch();
+    return useCallback(() => {
+        dispatch(Creators.listTeamTrophiesRequest());
+    }, [dispatch]);
+};
+
 export const useTeamSetSeasonSelected = () => {
     const dispatch = useDispatch();
     return useCallback((season: string) => {
@@ -63,6 +77,14 @@ export const useTeamStandings = () => {
 
 export const useTeamTeamDetails = () => {
     return useSelector((state: any) => state.team.teamSelected);
+};
+
+export const useTeamTeamPlayersSquad = () => {
+    return useSelector((state: any) => state.team.teamPlayersSquad);
+};
+
+export const useTeamTeamTrophies = () => {
+    return useSelector((state: any) => state.team.trophies);
 };
 
 export const useTeamIsFetching = () => {
