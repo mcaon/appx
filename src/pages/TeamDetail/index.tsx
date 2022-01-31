@@ -13,7 +13,7 @@ import {
     PageTitle,
     ScrollPage,
     TeamButtonsScroll,
-    TopBar
+    TopBar,
 } from '../../styles';
 import {Dimensions, Image, StyleSheet} from 'react-native';
 import {

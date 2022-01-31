@@ -90,7 +90,7 @@ export default function TeamPlayersSquad({navigation}: any) {
                                             <EventPlayersDescriptionView>
                                                 <PlayerPhotoView>
                                                     <Avatar.Image size={100}
-                                                                  source={{uri: 'https://media.api-sports.io/football/players/20319.png'}}/>
+                                                                  source={{uri: player?.photo}}/>
                                                 </PlayerPhotoView>
                                                 <PlayerTextView>
                                                     <EventTitleLabel>Name: {player?.name}</EventTitleLabel>
