@@ -15,7 +15,7 @@ const palette = {
     shadow: '#000000',
     link: '#cd9b39',
     selected: '#f5cb4d',
-    success: '#75d519',
+    success: '#3b9d03',
     fail: '#e21129',
     lightSuccess: '#dde5da',
     lightFail: '#e8d8da',

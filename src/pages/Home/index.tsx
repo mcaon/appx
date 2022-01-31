@@ -45,7 +45,7 @@ export default function Home({navigation}: any) {
 
     useEffect(() => {
         // getSeasons();
-        getTeamDetails(3);
+        // getTeamDetails(3);
     }, [getSeasons, getLeagues, getTeamDetails]);
 
     return (
