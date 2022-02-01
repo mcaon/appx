@@ -58,15 +58,6 @@ export function* getTeamDetails({teamId}: any) {
         // @ts-ignore
         const response: any = yield call(teamDetailsRequest, teamId);
         yield put(Creators.getTeamDetailsSuccess(response.data.response[0]));
-
-        // MOCK
-        // console.log('mock', teamId);
-        // let tempTeam = new TeamDetailModel();
-        // const team = new TeamModel(33, 'Manchester United', 'England', 1878, false, 'https://media.api-sports.io/football/teams/33.png');
-        // const venue = new VenueModel(556, 'Old Trafford', 'Sir Matt Busby Way', 'Manchester', 76212, 'grass', 'https://media.api-sports.io/football/venues/556.png');
-        // tempTeam.team = team;
-        // tempTeam.venue = venue;
-        // yield put(Creators.getTeamDetailsSuccess(tempTeam));
     } catch (error) {
         setSnackbarInfos('Erro ao pesquisar Time', true);
         yield put(Creators.loadingFailed());
